@@ -2,6 +2,26 @@ from pickle import SETITEM
 
 from django.db import models
 
+class Category(models.Model):
+    name_category = models.CharField(
+        max_length=150,
+        verbose_name="Наименование категории",
+        help_text="Введите название категории",
+    )
+    description = models.TextField(
+        verbose_name="Описание категории",
+        help_text="Введите описание категории",
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        return self.name_category
+
+    class Meta:
+        verbose_name = "категория"
+        verbose_name_plural = "категории"
+        ordering = ["name_category"]
 
 class Product(models.Model):
     name_product = models.CharField(
@@ -23,6 +43,7 @@ class Product(models.Model):
         help_text="Загрузите изображение",
     )
     category = models.ForeignKey(
+        Category,
         on_delete=models.SET_NULL, blank=True, null=True, related_name="products"
     )
     price = models.CharField(
@@ -37,26 +58,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
-        ordering = ["name_product", "created_at", "update_at", "price"]
+        ordering = ["name_product", "created_at", "updated_at", "price"]
 
 
-class Category(models.Model):
-    name_category = models.CharField(
-        max_length=150,
-        verbose_name="Наименование категории",
-        help_text="Введите название категории",
-    )
-    description = models.TextField(
-        verbose_name="Описание категории",
-        help_text="Введите описание категории",
-        blank=True,
-        null=True,
-    )
 
-    def __str__(self):
-        return self.name_category
-
-    class Meta:
-        verbose_name = "категория"
-        verbose_name_plural = "категории"
-        ordering = ["name_category"]
