@@ -13,6 +13,7 @@ python-dotenv = "^1.0.1"
 black = "^25.1.0"
 pillow = "^11.1.0"
 ipython = "^8.32.0"
+django-dump-load-utf8 = "^0.0.4"
 
 
 [build-system]
