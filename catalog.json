@@ -1,0 +1,70 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name_category": "Телефоны",
+        "description": "Описание телефонов"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+        "name_category": "Телевизоры",
+        "description": "Описание телевизоров"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+        "name_product": "iphone",
+        "description": "крутой айфон",
+        "image": "",
+        "category": 3,
+        "price": "88888",
+        "created_at": "2025-02-10T13:23:08.577Z",
+        "updated_at": "2025-02-10T13:23:08.577Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+        "name_product": "xiaomi",
+        "description": "лучше купите айфон",
+        "image": "",
+        "category": 3,
+        "price": "33333",
+        "created_at": "2025-02-10T13:23:37.440Z",
+        "updated_at": "2025-02-10T13:23:37.440Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+        "name_product": "Samsung",
+        "description": "круто, но дорого",
+        "image": "",
+        "category": 4,
+        "price": "99999",
+        "created_at": "2025-02-10T13:24:00.366Z",
+        "updated_at": "2025-02-10T13:24:00.366Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+        "name_product": "Sony",
+        "description": "неплохой тв",
+        "image": "",
+        "category": 4,
+        "price": "77777",
+        "created_at": "2025-02-10T13:24:23.341Z",
+        "updated_at": "2025-02-10T13:24:23.341Z"
+    }
+}
+]
