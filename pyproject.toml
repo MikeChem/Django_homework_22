@@ -8,6 +8,12 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.13"
 django = "^5.1.5"
+psycopg2-binary = "^2.9.10"
+python-dotenv = "^1.0.1"
+black = "^25.1.0"
+pillow = "^11.1.0"
+ipython = "^8.32.0"
+django-dump-load-utf8 = "^0.0.4"
 
 
 [build-system]
