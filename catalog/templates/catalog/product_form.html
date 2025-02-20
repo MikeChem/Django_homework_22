@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Продукт</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">
+                {% if object %}
+                Сохранить
+                {% else %}
+                Создать
+                {% endif %}
+            </button>
+            <a href="{% url 'catalog:products_list' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+{% endblock %}

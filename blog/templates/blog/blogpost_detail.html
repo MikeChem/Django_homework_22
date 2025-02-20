@@ -1,0 +1,8 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+    <h1>{{ blogpost.title }}</h1>
+    <p>{{ blogpost.content }}</p>
+    <p>Дата создания: {{ blogpost.created_at }}</p>
+    <p>Просмотров: {{ blogpost.views_count }}</p>
+    <a href="{% url 'blog:blogpost_list' %}">К списку записей</a>
+{% endblock %}
