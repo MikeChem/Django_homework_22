@@ -2,6 +2,7 @@ from pickle import SETITEM
 
 from django.db import models
 
+
 class Category(models.Model):
     name_category = models.CharField(
         max_length=150,
@@ -23,6 +24,7 @@ class Category(models.Model):
         verbose_name_plural = "категории"
         ordering = ["name_category"]
 
+
 class Product(models.Model):
     name_product = models.CharField(
         max_length=150,
@@ -36,7 +38,7 @@ class Product(models.Model):
         null=True,
     )
     image = models.ImageField(
-        upload_to="media/product/image",
+        upload_to="media/catalog/image",
         blank=True,
         null=True,
         verbose_name="Изображение",
@@ -44,10 +46,18 @@ class Product(models.Model):
     )
     category = models.ForeignKey(
         Category,
-        on_delete=models.SET_NULL, blank=True, null=True, related_name="products"
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="catalog",
     )
     price = models.CharField(
         max_length=20, verbose_name="Цена", help_text="Введите цену продукта"
+    )
+    views_counter = models.PositiveIntegerField(
+        verbose_name="Счетчик просмотров",
+        help_text="Укажите количество просмотров",
+        default=0,
     )
     created_at = models.DateTimeField(auto_now_add=True, help_text="Продукт создан")
     updated_at = models.DateTimeField(auto_now=True, help_text="Продукт обновлен")
@@ -59,6 +69,3 @@ class Product(models.Model):
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
         ordering = ["name_product", "created_at", "updated_at", "price"]
-
-
-

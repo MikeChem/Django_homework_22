@@ -1,0 +1,14 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+    <h1>Блоговые записи</h1>
+    <a href="{% url 'blog:blogpost_create' %}">Создать новую запись</a>
+    <ul>
+        {% for post in blogposts %}
+            <li>
+                <a href="{% url 'blog:blogpost_detail' post.pk %}">{{ post.title }}</a>
+                - <a href="{% url 'blog:blogpost_update' post.pk %}">Редактировать</a>
+                - <a href="{% url 'blog:blogpost_delete' post.pk %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
