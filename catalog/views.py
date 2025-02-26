@@ -8,16 +8,20 @@ from django.views.generic import (
     DeleteView,
     TemplateView
 )
+
+from catalog.forms import ProductForm
 from catalog.models import Product
 from django.urls import reverse_lazy, reverse
 
 
 class ProductListView(ListView):
     model = Product
+    form_class = ProductForm
 
 
 class ProductDetailView(DetailView):
     model = Product
+    form_class = ProductForm
 
     def get_object(self, queryset=None):
         # Переопределение метода get_object для настройки логики выбора объекта
@@ -28,12 +32,12 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(CreateView):
     model = Product
-    fields = ["name_product", "description", "image", "category", "price"]
+    form_class = ProductForm
     success_url = reverse_lazy("catalog:products_list")
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ["name_product", "description", "image", "category", "price"]
+    form_class = ProductForm
     success_url = reverse_lazy("catalog:products_list")
 
 

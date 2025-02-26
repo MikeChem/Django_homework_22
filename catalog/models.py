@@ -1,5 +1,6 @@
 from pickle import SETITEM
-
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
@@ -24,16 +25,21 @@ class Category(models.Model):
         verbose_name_plural = "категории"
         ordering = ["name_category"]
 
+def validate_image_size(value):
+    """Проверяет размер файла изображения."""
+    max_size = 5 * 1024 * 1024  # 5 MB
+    if value.size > max_size:
+        raise ValidationError('Размер файла не должен превышать 5 МБ.')
 
 class Product(models.Model):
     name_product = models.CharField(
         max_length=150,
         verbose_name="Наименование продукта",
-        help_text="Введите наименование продукта",
+
     )
     description = models.TextField(
         verbose_name="Описание продукта",
-        help_text="Введите описание продукта",
+
         blank=True,
         null=True,
     )
@@ -43,6 +49,10 @@ class Product(models.Model):
         null=True,
         verbose_name="Изображение",
         help_text="Загрузите изображение",
+        validators=[
+            FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
+            validate_image_size
+        ]
     )
     category = models.ForeignKey(
         Category,
@@ -52,7 +62,7 @@ class Product(models.Model):
         related_name="catalog",
     )
     price = models.CharField(
-        max_length=20, verbose_name="Цена", help_text="Введите цену продукта"
+        max_length=20, verbose_name="Цена",
     )
     views_counter = models.PositiveIntegerField(
         verbose_name="Счетчик просмотров",
@@ -69,3 +79,6 @@ class Product(models.Model):
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
         ordering = ["name_product", "created_at", "updated_at", "price"]
+
+
+
