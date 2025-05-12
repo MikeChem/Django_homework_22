@@ -15,6 +15,7 @@ pillow = "^11.1.0"
 ipython = "^8.32.0"
 django-dump-load-utf8 = "^0.0.4"
 django-crispy-forms = "^2.3"
+django-redis = "^5.4.0"
 
 
 [build-system]

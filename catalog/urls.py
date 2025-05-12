@@ -11,7 +11,8 @@ from catalog.views import (
 )
 from django.conf import settings
 from django.conf.urls.static import static
-
+from catalog.views import check_cache
+from catalog.views import products_by_category
 app_name = "catalog"
 
 urlpatterns = [
@@ -26,6 +27,9 @@ urlpatterns = [
         "catalog/<int:pk>/delete/", ProductDeleteView.as_view(), name="products_delete"
     ),
     path("catalog/contacts/", ContactsView.as_view(), name="contacts"),
+    path('cache-test/', check_cache, name='check_cache'),
+    path('product/<int:pk>/cache-status/', views.product_cache_status, name='product_cache_status'),
+    path('category/<int:category_id>/products/', products_by_category, name='products_by_category'),
 ]
 
 if settings.DEBUG:
